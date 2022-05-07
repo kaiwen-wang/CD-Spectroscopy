@@ -61,6 +61,12 @@ body {
     margin-right: auto;
 }
 
+.footer-center {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .l--page {
     width: 944px;
     margin-left: auto;
@@ -331,7 +337,7 @@ header h1 .optional {
 }
 
 #top-controls .control .select::after {
-    class: "material-icons";
+    /* class: "material-icons"; */
     content: "arrow_drop_down";
     color: #999;
     font-family: 'Material Icons';
@@ -437,9 +443,7 @@ header h1 .optional {
     background: white;
 }
 
-svg text {
-    dominant-baseline: middle;
-}
+
 
 canvas {
     display: block;
@@ -467,7 +471,6 @@ g.column rect {
 
 #heatmap .tick text {
     fill: #bbb;
-    dominant-baseline: auto;
 }
 
 #heatmap .tick:nth-child(7) text {
@@ -695,15 +698,6 @@ g.column rect {
     opacity: 1.0;
 }
 
-@-webkit-keyframes flowing {
-    from {
-        stroke-dashoffset: 0;
-    }
-
-    to {
-        stroke-dashoffset: -10;
-    }
-}
 
 #network .core .link {
     stroke-dasharray: 9 1;
@@ -898,7 +892,6 @@ footer svg {
 }
 
 footer .links {
-    float: right;
     font-size: 13px;
     height: 30px;
     line-height: 30px;
@@ -938,6 +931,19 @@ footer .links a:hover {
 /* Material Overrides */
 
 /* Buttons */
+
+.buttons {
+    /* Vertically center */
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.buttons button {
+    background-color: rgb(243, 243, 243);
+    /* text color white */
+    color: rgb(10, 23, 30);
+}
 
 .mdl-button--fab.mdl-button--colored,
 .mdl-button--fab.mdl-button--colored:hover,

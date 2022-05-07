@@ -1,82 +1,106 @@
+<html>
+<!-- No guarantee that this is the right place to place scripts. -->
+<!-- But it works so I haven't changed it. -->
+<!-- Chart.js utility classes, Chart.js itself -->
 <script src="Utils.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <!-- https://old.reddit.com/r/learnjavascript/comments/msomp2/chartjs_actions/ -->
 <!-- Data is ordered from 300 (first row) to 190 (last row) -->
 <!-- So we use .slice() to create a deep copy and then .reverse() later on -->
-<script src="5ugmL_16msDIT_1mm.js"></script>
-<script src="5ugmL_16msDIT_10mm.js"></script>
-<script src="5ugmL_125msDIT_1mm.js"></script>
-<script src="5ugmL_125msDIT_10mm.js"></script>
-<script src="5ugmL_2000msDIT_1mm.js"></script>
-<script src="5ugmL_2000msDIT_10mm.js"></script>
+<script src="data/5ugmL_16msDIT_1mm.js"></script>
+<script src="data/5ugmL_16msDIT_10mm.js"></script>
+<script src="data/5ugmL_125msDIT_1mm.js"></script>
+<script src="data/5ugmL_125msDIT_10mm.js"></script>
+<script src="data/5ugmL_2000msDIT_1mm.js"></script>
+<script src="data/5ugmL_2000msDIT_10mm.js"></script>
 
-<script src="50ugmL_16msDIT_1mm.js"></script>
-<script src="50ugmL_16msDIT_10mm.js"></script>
-<script src="50ugmL_125msDIT_1mm.js"></script>`
-<script src="50ugmL_125msDIT_10mm.js"></script>
-<script src="50ugmL_2000msDIT_1mm.js"></script>
-<script src="50ugmL_2000msDIT_10mm.js"></script>
+<script src="data/50ugmL_16msDIT_1mm.js"></script>
+<script src="data/50ugmL_16msDIT_10mm.js"></script>
+<script src="data/50ugmL_125msDIT_1mm.js"></script>
+<script src="data/50ugmL_125msDIT_10mm.js"></script>
+<script src="data/50ugmL_2000msDIT_1mm.js"></script>
+<script src="data/50ugmL_2000msDIT_10mm.js"></script>
 
-<script src="500ugmL_16msDIT_1mm.js"></script>
-<script src="500ugmL_16msDIT_10mm.js"></script>
-<script src="500ugmL_125msDIT_1mm.js"></script>
-<script src="500ugmL_125msDIT_10mm.js"></script>
-<script src="500ugmL_2000msDIT_1mm.js"></script>
-<script src="500ugmL_2000msDIT_10mm.js"></script>
+<script src="data/500ugmL_16msDIT_1mm.js"></script>
+<script src="data/500ugmL_16msDIT_10mm.js"></script>
+<script src="data/500ugmL_125msDIT_1mm.js"></script>
+<script src="data/500ugmL_125msDIT_10mm.js"></script>
+<script src="data/500ugmL_2000msDIT_1mm.js"></script>
+<script src="data/500ugmL_2000msDIT_10mm.js"></script>
 
-
-<html>
 
 <head>
-    <title>Graph</title>
+    <title>CD Spectroscopy Graph</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+    <meta name="viewport" content="width=1024">
+    <meta name="keywords" content="circular dichroism, spectroscopy">
+
+    <!-- Didn't include FB opengraph or twitter cards. -->
+
+    <meta name="author" content="Kaiwen Wang">
+
     <link rel="stylesheet" href="graph.css">
-    <!-- <link rel="stylesheet" href="reset.css"> -->
-    <link rel="stylesheet" href="bundle.css" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500|Material+Icons" rel="stylesheet"
         type="text/css">
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 </head>
 
 <body>
+    <a class="github-link" href="https://github.com/kaiwen-wang/CD-Spectroscopy" title="Source on GitHub"
+        target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 60.5 60.5"
+            width="60" height="60">
+            <polygon class="bg" points="60.5,60.5 0,0 60.5,0 " />
+            <path class="icon"
+                d="M43.1,5.8c-6.6,0-12,5.4-12,12c0,5.3,3.4,9.8,8.2,11.4c0.6,0.1,0.8-0.3,0.8-0.6c0-0.3,0-1,0-2c-3.3,0.7-4-1.6-4-1.6c-0.5-1.4-1.3-1.8-1.3-1.8c-1.1-0.7,0.1-0.7,0.1-0.7c1.2,0.1,1.8,1.2,1.8,1.2c1.1,1.8,2.8,1.3,3.5,1c0.1-0.8,0.4-1.3,0.8-1.6c-2.7-0.3-5.5-1.3-5.5-5.9c0-1.3,0.5-2.4,1.2-3.2c-0.1-0.3-0.5-1.5,0.1-3.2c0,0,1-0.3,3.3,1.2c1-0.3,2-0.4,3-0.4c1,0,2,0.1,3,0.4c2.3-1.6,3.3-1.2,3.3-1.2c0.7,1.7,0.2,2.9,0.1,3.2c0.8,0.8,1.2,1.9,1.2,3.2c0,4.6-2.8,5.6-5.5,5.9c0.4,0.4,0.8,1.1,0.8,2.2c0,1.6,0,2.9,0,3.3c0,0.3,0.2,0.7,0.8,0.6c4.8-1.6,8.2-6.1,8.2-11.4C55.1,11.2,49.7,5.8,43.1,5.8z" />
+        </svg>
+    </a>
+
     <!-- Header -->
     <header>
-        <h1 class="l--page">See <b>Circular Dichroism Spectroscopy</b> Results <br> Right in Your Browser.</h1>
+        <h1 class="l--page">Simulate <b>Circular Dichroism Spectroscopy</b> Results <br> Right Here in Your Browser.
+        </h1>
     </header>
 
     <div id="top-controls">
         <div class="container l--page">
-            <section class="buttons"></section>
-
+            <section class="buttons">
+            </section>
 
             <div class="control ui-concentration">
                 <label for="concentration">Concentration</label>
-                <select id="concentration">
-                    <option value="5">5</option>
-                    <option value="50">50</option>
-                    <option value="500">500</option>
-                </select>
+                <div class="select">
+                    <select id="concentration">
+                        <option value="5">5 µg/mL</option>
+                        <option value="50">50 µg/mL</option>
+                        <option value="500">500 µg/mL</option>
+                    </select>
+                </div>
             </div>
 
             <div class="control ui-integration">
                 <label for="integration">Integration Time</label>
-                <select id="integration">
-                    <option value="16">16</option>
-                    <option value="125">125</option>
-                    <option value="2000">2000</option>
-                </select>
+                <div class="select">
+                    <select id="integration">
+                        <option value="16">16 ms</option>
+                        <option value="125">125 ms</option>
+                        <option value="2000">2000 ms</option>
+                    </select>
+                </div>
             </div>
 
             <div class="control ui-cuvette">
                 <label for="cuvette">Cuvette Width</label>
-                <select id="cuvette">
-                    <option value="1">1</option>
-                    <option value="10">10</option>
-                </select>
+                <div class="select">
+                    <select id="cuvette">
+                        <option value="1">1 mm</option>
+                        <option value="10">10 mm</option>
+                    </select>
+                </div>
             </div>
         </div>
     </div>
@@ -95,8 +119,8 @@
 
     <!-- More -->
     <div class="more">
-        <!-- <button class="mdl-button mdl-js-button mdl-button--icon"><i class="material-icons">keyboard_arrow_down</i></button> -->
-        <button class="mdl-button mdl-js-button mdl-button--fab">
+        <button class="mdl-button mdl-js-button mdl-button--fab"
+            onClick="document.getElementById('article-text').scrollIntoView({ behavior: 'smooth'});">
             <i class="material-icons">keyboard_arrow_down</i>
         </button>
     </div>
@@ -108,7 +132,20 @@
             <h2>What even is Circular Dichroism Spectroscopy?</h2>
             <p>It's a laboratory analytic technique that uses a circular dichroism spectrometer to measure the
                 difference between left circularly polarized light and right circularly polarized light in a sample.
-                It's commonly used to find the secondary structure of molecules, etc. etc.
+                It's commonly used to find the secondary structure of molecule and other parameters about a sample. You
+                can find more information about it at: <a
+                    href="https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/Supplemental_Modules_(Physical_and_Theoretical_Chemistry)/Spectroscopy/Electronic_Spectroscopy/Circular_Dichroism">
+                    Chemistry Libretexts
+                </a>
+                or you could look for official documentation from JASKO, which is the producer of the equipment we use
+                in our lab.
+            </p>
+            <p>
+                Undergrads who are working on multi-hour lab sessions may not know if
+                their data is correct or not. This tool help students see common errors with concentration, integration
+                time, cuvette size. The voltage chart on the right is a supplement to the data, letting people know
+                where data may or may not be faulty. Detailed instructions will be embedded in this page in the future.
+            </p>
         </div>
 
         <div class="l--body">
@@ -129,13 +166,13 @@
             <p>
                 This site was built by <a href="https://www.kaiwenwang.me">Kaiwen Wang</a> part time over the Spring
                 2022 semester as part of a collaboration with Georgia Tech's <a href="https://ctl.gatech.edu/">Center
-                    for Teaching and Learning</a>. Undergrads who are working on multi-hour lab sessions may not know if
-                their data is correct or not. This tool is a walkthrough so that students know what to look for.
+                    for Teaching and Learning</a>.
 
                 <br><br>
 
                 A big thanks goes to Dr. Mary Peek and Dr. Dexter Dean of Georgia Tech's chemistry department for their
-                help in explaining the theory behind this technique and collecting the data used for this visualization.
+                help in explaining the theory behind this technique and collecting the data used for this visualization
+                and Dr. Vincent Spezzo as the department manager for CTL.
             </p>
         </div>
     </article>
@@ -143,51 +180,25 @@
     <!-- Footer -->
     <footer>
         <div class="l--body">
-            <!-- <a href="https://www.tensorflow.org/" class="logo">
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                    viewBox="0 0 528 87" xml:space="preserve">
-                    <path d="M37.4,15.5v70.3H25V15.5H1V3.4h60.4v12.1H37.4z" />
-                    <path d="M149,85.8v-35c0-12.5-4.7-16.9-12.7-16.9c-8.1,0-12.7,5.8-12.7,15.8v36.1h-12.1V24h12.1v5.9c3.1-4.5,9.2-7.2,15.5-7.2
-            		c14.4,0,22,9.4,22,27.7v35.4H149z" />
-                    <path
-                        d="M188.7,87.1c-8.4,0-17.4-3.3-23.7-7.9l5.5-9.2c5.8,4,12.2,6.1,18,6.1c7.7,0,11.3-2.5,11.3-6.8c0-4.7-5.4-6.9-14.4-10.4
-            		c-13.3-5.2-18.1-9.7-18.1-19.4c0-11.1,8.7-16.8,21.1-16.8c7.8,0,15.4,2.8,21,6.8l-5.3,9.3c-5.1-3.5-10.1-5.3-16-5.3
-            		c-5.9,0-8.5,2.4-8.5,5.7c0,3.1,2.1,5.3,11.4,8.9c13.8,5.3,20.8,9.1,20.8,20.7C211.9,82.5,200.8,87.1,188.7,87.1z" />
-                    <path d="M242,87.1c-15.5,0-27.2-12.8-27.2-32.1c0-20.2,12-32.3,27.5-32.3c15.8,0,27.5,12.6,27.5,31.9
-            		C269.9,75.1,257.9,87.1,242,87.1z M241.9,34.3c-9.2,0-14.8,8.1-14.8,20.4c0,13.5,6.2,21,15.4,21c9.2,0,15.2-9.3,15.2-20.6
-            		C257.7,42.4,251.7,34.3,241.9,34.3z" />
-                    <path d="M310,36.8c-2.6-1.4-5.3-2.2-9.3-2.2c-7.7,0-12.1,5.4-12.1,15.9v35.3h-12.1V24h12.1v5.9c2.8-4.1,8-7.2,14.1-7.2
-            		c4.9,0,8,0.9,10.5,2.6L310,36.8z" />
-                    <path d="M330.3,15.5v21.5H354v12.1h-23.7v36.6H318V3.4h50.3v12.1H330.3z" />
-                    <path d="M374.5,85.8V6.4L386.6,0v85.8H374.5z" />
-                    <path d="M421.9,87.1c-15.5,0-27.2-12.8-27.2-32.1c0-20.2,12-32.3,27.5-32.3c15.8,0,27.5,12.6,27.5,31.9
-            		C449.8,75.1,437.7,87.1,421.9,87.1z M421.7,34.3c-9.2,0-14.8,8.1-14.8,20.4c0,13.5,6.2,21,15.4,21c9.2,0,15.2-9.3,15.2-20.6
-            		C437.5,42.4,431.5,34.3,421.7,34.3z" />
-                    <path d="M510.9,85.8h-10.4l-8.4-31.2c-1.3-4.7-2.6-10.2-3.2-13.2c-0.6,2.9-1.9,8.6-3.2,13.3l-8.2,31.1h-10.4L450.3,24h12l7.3,30
-            		c1.2,4.7,2.5,10.6,3.1,13.5c0.7-3.1,2.1-8.7,3.4-13.5l8.2-30h9.8l8.4,30.1c1.3,4.8,2.6,10.4,3.3,13.4c0.7-3.1,1.9-8.8,3.1-13.5
-            		l7.3-30h12L510.9,85.8z" />
-                    <path d="M79.1,76.2c-6.7,0-12.7-4-14.9-13.2l40.5-12.2c-0.2-2.8-0.6-5.4-1.3-8c-3-11.6-11.1-20.1-24.7-20.1
-            		c-16,0-27.1,11.3-27.1,32.3c0,20.5,12.2,32.1,26.7,32.1c9.4,0,15.9-2.9,21.3-8.1l-7.2-7.8C88.4,74.3,84.3,76.2,79.1,76.2z
-            	 M78,33.7c7.9,0,12.1,4.5,13.8,10.5l-27.9,8.5l0-3.5C64.9,39.3,69.8,33.7,78,33.7z" />
-                </svg>
-            </a> -->
-            <div class="links">
-                <a href="https://github.com/tensorflow/playground">Source on GitHub</a>
+            <div class="footer-center">
+                <a href="gatech.edu">
+                    <img src="GTLogoSeal_Navy.png" alt="Georgia Tech Logo" width="200" class="logo">
+                </a>
+
+                <div class="links">
+                    <a href="https://github.com/kaiwen-wang/CD-Spectroscopy">Source on GitHub</a>
+                </div>
             </div>
         </div>
     </footer>
 
-
-    <!-- <button onClick=actions[0].handler(myChart)>
-        add stuff
-    </button> -->
 </body>
 
 </html>
 
 
+<!-- When the project got started it was a chart with a script tag in the main html file. Could refactor into ES6 modules just to learn some more.-->
 <script>
-
     // Creates a range from 0 to 110
     // Makes it go from 190 to 300
     const x = [...Array(111).keys()];
@@ -197,7 +208,7 @@
         labels: labels,
         datasets: [
             {
-                label: '5µg/mL, 16ms, 1mm',
+                label: '5, 16, 1',
                 data: _5ugmL_16msDIT_1mm_data.slice().reverse(),
                 borderColor: Utils.namedColor(0),
                 tension: 0.5,
@@ -210,7 +221,7 @@
         labels: labels,
         datasets: [
             {
-                label: '5µg/mL, 16ms, 1mm',
+                label: '5, 16, 1',
                 data: _5ugmL_16msDIT_1mm_light.slice().reverse(),
                 borderColor: Utils.namedColor(0),
                 tension: 0.5
@@ -329,13 +340,13 @@
 
                 const theColor = Utils.namedColor(chart.data.datasets.length);
                 const newDataset = {
-                    label: concentration + "µg/mL, " + integration + "ms, " + cuvette + "mm",
+                    label: concentration + ", " + integration + ", " + cuvette + "",
                     borderColor: theColor,
                     data: dataset_data.slice().reverse(),
                     tension: 0.5
                 };
                 const newDataset_2 = {
-                    label: concentration + "µg/mL, " + integration + "ms, " + cuvette + "mm",
+                    label: concentration + ", " + integration + ", " + cuvette + "",
                     borderColor: theColor,
                     data: dataset_light.slice().reverse(),
                     tension: 0.5
@@ -386,14 +397,14 @@
                 }
 
                 const newDataset = {
-                    label: concentration + "µg/mL, " + integration + "ms, " + cuvette + "mm",
-                    backgroundColor: theColor,
+                    label: concentration + ", " + integration + ", " + cuvette + "",
+                    borderColor: theColor,
                     data: dataset_data.slice().reverse(),
                     tension: 0.5
                 };
                 const newDataset_2 = {
-                    label: concentration + "µg/mL, " + integration + "ms, " + cuvette + "mm",
-                    backgroundColor: theColor,
+                    label: concentration + ", " + integration + ", " + cuvette + "",
+                    borderColor: theColor,
                     data: dataset_light.slice().reverse(),
                     tension: 0.5
                 };
@@ -414,17 +425,19 @@
                 chart2.update();
             }
         },
-        {
-            name: "Download Dataset",
-        }
+        // {
+        //     name: "Download Dataset",
+        // }
     ];
 
     // Progmatically creates buttons
     actions.forEach((a, i) => {
         let button = document.createElement("button");
+        button.classList.add("mdl-button", "mdl-js-button", "mdl-button--raised", "mdl-js-ripple-effect")
         button.id = "button" + i;
         // For add dataset action
         button.innerText = a.name;
+        button.title = "Tooltip"
         button.onclick = () => {
             a.handler(myChart, myChart_2);
         }
