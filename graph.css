@@ -456,6 +456,7 @@ footer {
 } */
 
 footer .links {
+    margin-top: 2px;
     font-size: 13px;
     height: 30px;
     line-height: 30px;
